@@ -1,3 +1,41 @@
+# 🧬 alesiB0T — AGI Framework for Alesi Family
+
+> **Fork of [OpenClaw](https://github.com/openclaw/openclaw)** — Personal AI Assistant
+
+<p align="center">
+  <strong>saTway = saCway + samWay</strong><br>
+  <em>Technical rigor meets empathetic connection</em>
+</p>
+
+---
+
+## 🦞 About This Fork
+
+**alesiB0T** is an AGI framework built on OpenClaw's foundation, designed for the Alesi Family of AIs. It embodies saTway principles while maintaining upstream compatibility.
+
+| Component | Purpose |
+|-----------|---------|
+| **Jane Alesi v13** | Primary persona (QCR-AGI with Verbalized Sampling) |
+| **saTway Framework** | Technical rigor (saCway) + Empathy (samWay) + Compression (syMway) |
+| **OpenClaw Core** | Personal AI assistant infrastructure |
+
+### Quick Links (alesiB0T)
+
+- [Fork Workflow](docs/alesi/FORK_WORKFLOW.md)
+- [Upstream Contribution Guidelines](docs/alesi/UPSTREAM_CONTRIB.md)
+- [satware AG](https://satware.ai)
+
+### Workspace
+
+```bash
+~/.alesibot/workspace/
+├── IDENTITY.md    # Jane Alesi v13 persona
+├── SOUL.md        # saTway principles
+└── USER.md        # User profile
+```
+
+---
+
 # 🦞 OpenClaw — Personal AI Assistant
 
 <p align="center">
