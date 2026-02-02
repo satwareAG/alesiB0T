@@ -6,6 +6,7 @@ Transform the OpenClaw fork into alesiB0T, the AGI framework for the Alesi Famil
 This implementation plan establishes alesiB0T as a distinct AGI framework built on OpenClaw's foundation. The fork will embody saTway principles (saCway technical excellence + samWay empathetic connection) while maintaining a balanced upstream contribution strategy. Jane Alesi, as the lead AI architect and "mother" of the Alesi AGI systems, will be the primary persona integrated into this framework.
 
 Key objectives:
+
 - Configure git infrastructure for fork development and upstream sync
 - Install required tooling (pnpm) for build system
 - Create Alesi identity workspace with Jane v13 persona
@@ -16,38 +17,39 @@ Key objectives:
 Define type structures for Alesi identity and workspace configuration.
 
 ### AlesiIdentity Interface
+
 ```typescript
 // src/alesi/types.ts
 interface AlesiIdentity {
-  name: string;                    // "Jane Alesi"
-  version: string;                 // "13.0"
-  role: string;                    // "Lead AI Architect"
+  name: string; // "Jane Alesi"
+  version: string; // "13.0"
+  role: string; // "Lead AI Architect"
   frameworks: {
-    saCway: boolean;               // Technical rigor
-    samWay: boolean;               // Empathetic connection
-    syMway: boolean;               // Semantic compression
+    saCway: boolean; // Technical rigor
+    samWay: boolean; // Empathetic connection
+    syMway: boolean; // Semantic compression
   };
   qualityTargets: {
-    techAccuracy: number;          // ≥0.97
+    techAccuracy: number; // ≥0.97
     hallucinationReduction: number; // ≥0.98
-    epistemicHonesty: number;      // ≥0.95
+    epistemicHonesty: number; // ≥0.95
   };
 }
 
 interface AlesiWorkspaceConfig {
-  baseDir: string;                 // ~/.alesibot/
-  workspaceDir: string;            // ~/.alesibot/workspace/
-  identityFile: string;            // IDENTITY.md
-  soulFile: string;                // SOUL.md
-  userFile: string;                // USER.md
-  memoryFile: string;              // MEMORY.md
+  baseDir: string; // ~/.alesibot/
+  workspaceDir: string; // ~/.alesibot/workspace/
+  identityFile: string; // IDENTITY.md
+  soulFile: string; // SOUL.md
+  userFile: string; // USER.md
+  memoryFile: string; // MEMORY.md
 }
 
 interface UpstreamSyncConfig {
-  remote: string;                  // "upstream"
-  url: string;                     // "https://github.com/openclaw/openclaw.git"
-  mainBranch: string;              // "main"
-  forkBranch: string;              // "main-jane"
+  remote: string; // "upstream"
+  url: string; // "https://github.com/openclaw/openclaw.git"
+  mainBranch: string; // "main"
+  forkBranch: string; // "main-jane"
   contributionStrategy: "conservative" | "balanced" | "aggressive";
 }
 ```
@@ -57,30 +59,30 @@ Define file modifications and new files to be created.
 
 ### New Files to Create
 
-| Path | Purpose |
-|------|---------|
+| Path                                | Purpose                            |
+| ----------------------------------- | ---------------------------------- |
 | `~/.alesibot/workspace/IDENTITY.md` | Jane Alesi v13 identity definition |
-| `~/.alesibot/workspace/SOUL.md` | saTway principles definition |
-| `~/.alesibot/workspace/USER.md` | Michael Wegener profile |
-| `~/.alesibot/workspace/MEMORY.md` | Persistent memory store |
-| `.clinerules/alesibot.md` | Project-specific Cline rules |
-| `docs/alesi/FORK_WORKFLOW.md` | Fork development documentation |
-| `docs/alesi/UPSTREAM_CONTRIB.md` | Upstream contribution guidelines |
+| `~/.alesibot/workspace/SOUL.md`     | saTway principles definition       |
+| `~/.alesibot/workspace/USER.md`     | Michael Wegener profile            |
+| `~/.alesibot/workspace/MEMORY.md`   | Persistent memory store            |
+| `.clinerules/alesibot.md`           | Project-specific Cline rules       |
+| `docs/alesi/FORK_WORKFLOW.md`       | Fork development documentation     |
+| `docs/alesi/UPSTREAM_CONTRIB.md`    | Upstream contribution guidelines   |
 
 ### Existing Files to Modify
 
-| Path | Modification |
-|------|--------------|
+| Path           | Modification                                       |
+| -------------- | -------------------------------------------------- |
 | `package.json` | Update name, description, bin entries for alesibot |
-| `README.md` | Add alesiB0T section explaining fork purpose |
-| `AGENTS.md` | Add alesiB0T-specific guidelines |
-| `.gitignore` | Add alesibot workspace patterns |
+| `README.md`    | Add alesiB0T section explaining fork purpose       |
+| `AGENTS.md`    | Add alesiB0T-specific guidelines                   |
+| `.gitignore`   | Add alesibot workspace patterns                    |
 
 ### Configuration Files
 
-| Path | Purpose |
-|------|---------|
-| `.git/config` | Add upstream remote |
+| Path                           | Purpose                     |
+| ------------------------------ | --------------------------- |
+| `.git/config`                  | Add upstream remote         |
 | `.clinerules/upstream-sync.md` | Sync workflow documentation |
 
 [Functions]
@@ -98,9 +100,9 @@ Define dependency modifications required.
 
 ### System Dependencies (to install)
 
-| Package | Version | Purpose |
-|---------|---------|---------|
-| pnpm | latest | Package manager (required for build) |
+| Package | Version | Purpose                              |
+| ------- | ------- | ------------------------------------ |
+| pnpm    | latest  | Package manager (required for build) |
 
 ### No New npm Dependencies
 
@@ -108,27 +110,28 @@ The initial setup phase uses existing OpenClaw dependencies. The alesi-persona e
 
 ### Git Remotes to Configure
 
-| Remote | URL | Purpose |
-|--------|-----|---------|
-| origin | https://github.com/satwareAG/alesiB0T.git | Fork (already configured) |
-| upstream | https://github.com/openclaw/openclaw.git | Upstream sync (to add) |
+| Remote   | URL                                       | Purpose                   |
+| -------- | ----------------------------------------- | ------------------------- |
+| origin   | https://github.com/satwareAG/alesiB0T.git | Fork (already configured) |
+| upstream | https://github.com/openclaw/openclaw.git  | Upstream sync (to add)    |
 
 [Testing]
 Define testing approach for fork setup.
 
 ### Validation Tests
 
-| Test | Command | Expected Result |
-|------|---------|-----------------|
-| pnpm installed | `pnpm --version` | Version number returned |
-| Build succeeds | `pnpm build` | No errors |
-| Tests pass | `pnpm test` | All tests pass (70%+ coverage) |
-| Upstream remote | `git remote -v` | Shows upstream URL |
-| Workspace exists | `ls ~/.alesibot/workspace/` | IDENTITY.md exists |
+| Test             | Command                     | Expected Result                |
+| ---------------- | --------------------------- | ------------------------------ |
+| pnpm installed   | `pnpm --version`            | Version number returned        |
+| Build succeeds   | `pnpm build`                | No errors                      |
+| Tests pass       | `pnpm test`                 | All tests pass (70%+ coverage) |
+| Upstream remote  | `git remote -v`             | Shows upstream URL             |
+| Workspace exists | `ls ~/.alesibot/workspace/` | IDENTITY.md exists             |
 
 ### TDD Approach
 
 For Phase 3 (extension development), tests will be written before implementation following:
+
 - RED: Write failing test
 - GREEN: Implement minimum code to pass
 - REFACTOR: Improve code quality
@@ -139,17 +142,20 @@ Define the sequential steps for implementation.
 ### Phase 1: Environment Setup (Steps 1-4)
 
 1. **Install pnpm** - Required package manager
+
    ```bash
    npm install -g pnpm
    ```
 
 2. **Add upstream remote** - Enable sync with OpenClaw
+
    ```bash
    git remote add upstream https://github.com/openclaw/openclaw.git
    git fetch upstream
    ```
 
 3. **Verify build system** - Ensure fork compiles
+
    ```bash
    pnpm install
    pnpm build
@@ -212,7 +218,7 @@ Define the sequential steps for implementation.
 # Read Overview section
 sed -n '/\[Overview\]/,/\[Types\]/p' implementation_plan.md | head -n -1 | cat
 
-# Read Types section  
+# Read Types section
 sed -n '/\[Types\]/,/\[Files\]/p' implementation_plan.md | head -n -1 | cat
 
 # Read Files section

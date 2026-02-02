@@ -14,21 +14,21 @@ We maintain a **balanced** contribution strategy that benefits both the OpenClaw
 
 ### ✅ Always Contribute
 
-| Category | Examples |
-|----------|----------|
-| **Bug Fixes** | Crash fixes, memory leaks, error handling |
-| **Security Patches** | Vulnerability fixes, dependency updates |
-| **Performance** | Optimizations, caching improvements |
-| **Documentation** | Clarifications, typo fixes, examples |
-| **Tests** | Additional test coverage, edge cases |
+| Category             | Examples                                  |
+| -------------------- | ----------------------------------------- |
+| **Bug Fixes**        | Crash fixes, memory leaks, error handling |
+| **Security Patches** | Vulnerability fixes, dependency updates   |
+| **Performance**      | Optimizations, caching improvements       |
+| **Documentation**    | Clarifications, typo fixes, examples      |
+| **Tests**            | Additional test coverage, edge cases      |
 
 ### ✅ Consider Contributing
 
-| Category | Criteria |
-|----------|----------|
-| **New Features** | Generic, benefits all users |
-| **Refactoring** | Improves maintainability |
-| **Tooling** | Build/CI improvements |
+| Category         | Criteria                                     |
+| ---------------- | -------------------------------------------- |
+| **New Features** | Generic, benefits all users                  |
+| **Refactoring**  | Improves maintainability                     |
+| **Tooling**      | Build/CI improvements                        |
 | **Integrations** | New channels, providers (non-Alesi-specific) |
 
 ### Contribution Process
@@ -46,12 +46,12 @@ We maintain a **balanced** contribution strategy that benefits both the OpenClaw
 
 ### ❌ Do Not Contribute
 
-| Category | Reason |
-|----------|--------|
-| **Alesi Personas** | Proprietary AI identity |
-| **saTway Framework** | satware AG methodology |
-| **Workspace Config** | User-specific settings |
-| **Branding** | satware AG assets |
+| Category             | Reason                  |
+| -------------------- | ----------------------- |
+| **Alesi Personas**   | Proprietary AI identity |
+| **saTway Framework** | satware AG methodology  |
+| **Workspace Config** | User-specific settings  |
+| **Branding**         | satware AG assets       |
 
 ### Files Never Contributed
 
@@ -65,6 +65,7 @@ extensions/alesi-*               # Alesi extensions (future)
 ### Code Patterns
 
 Keep fork-specific:
+
 - Custom system prompts referencing saTway
 - Quality target overrides (≥97% vs ≥70%)
 - Alesi Family integration logic
@@ -99,12 +100,12 @@ Is this change...
 
 ### Quick Reference
 
-| Question | Yes | No |
-|----------|-----|-----|
-| Would OpenClaw users benefit? | Contribute | Keep |
-| Does it reference satware/Alesi? | Keep | Consider |
-| Is it in `docs/alesi/`? | Keep | N/A |
-| Is it a quality setting >OpenClaw standard? | Keep | Contribute |
+| Question                                    | Yes        | No         |
+| ------------------------------------------- | ---------- | ---------- |
+| Would OpenClaw users benefit?               | Contribute | Keep       |
+| Does it reference satware/Alesi?            | Keep       | Consider   |
+| Is it in `docs/alesi/`?                     | Keep       | N/A        |
+| Is it a quality setting >OpenClaw standard? | Keep       | Contribute |
 
 ---
 
@@ -200,11 +201,11 @@ Uses saTway principles for UI design.
 
 Maintain a log in the fork:
 
-| Date | PR | Description | Status |
-|------|----|-------------|--------|
-| 2026-01-31 | #123 | Gateway timeout fix | Merged |
-| 2026-02-05 | #125 | Docs typo | Merged |
-| 2026-02-10 | #128 | Performance opt | Pending |
+| Date       | PR   | Description         | Status  |
+| ---------- | ---- | ------------------- | ------- |
+| 2026-01-31 | #123 | Gateway timeout fix | Merged  |
+| 2026-02-05 | #125 | Docs typo           | Merged  |
+| 2026-02-10 | #128 | Performance opt     | Pending |
 
 ---
 

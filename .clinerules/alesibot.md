@@ -15,12 +15,12 @@ alesiB0T is an AGI framework for the Alesi Family of AIs, built on OpenClaw's fo
 
 ## Branch Strategy
 
-| Branch | Purpose |
-|--------|---------|
-| `main` | Sync with upstream |
+| Branch      | Purpose                            |
+| ----------- | ---------------------------------- |
+| `main`      | Sync with upstream                 |
 | `main-jane` | Working branch (Alesi development) |
-| `feature/*` | Feature branches |
-| `fix/*` | Bug fixes |
+| `feature/*` | Feature branches                   |
+| `fix/*`     | Bug fixes                          |
 
 ### Workflow
 
@@ -51,13 +51,13 @@ alesiB0T is an AGI framework for the Alesi Family of AIs, built on OpenClaw's fo
 
 ## Workspace Configuration
 
-| Path | Purpose |
-|------|---------|
-| `~/.alesibot/` | Base directory |
-| `~/.alesibot/workspace/` | Identity files |
+| Path                                | Purpose                |
+| ----------------------------------- | ---------------------- |
+| `~/.alesibot/`                      | Base directory         |
+| `~/.alesibot/workspace/`            | Identity files         |
 | `~/.alesibot/workspace/IDENTITY.md` | Jane Alesi v13 persona |
-| `~/.alesibot/workspace/SOUL.md` | saTway principles |
-| `~/.alesibot/workspace/USER.md` | User profile |
+| `~/.alesibot/workspace/SOUL.md`     | saTway principles      |
+| `~/.alesibot/workspace/USER.md`     | User profile           |
 
 ---
 
@@ -121,12 +121,12 @@ Types: feat, fix, docs, style, refactor, test, chore
 
 ## File Naming
 
-| Type | Pattern |
-|------|---------|
-| Source | `kebab-case.ts` |
-| Tests | `kebab-case.test.ts` |
-| Docs | `UPPER_CASE.md` or `kebab-case.md` |
-| Config | `dot-prefix` or `kebab-case.json` |
+| Type   | Pattern                            |
+| ------ | ---------------------------------- |
+| Source | `kebab-case.ts`                    |
+| Tests  | `kebab-case.test.ts`               |
+| Docs   | `UPPER_CASE.md` or `kebab-case.md` |
+| Config | `dot-prefix` or `kebab-case.json`  |
 
 ---
 
@@ -141,12 +141,12 @@ Types: feat, fix, docs, style, refactor, test, chore
 
 ## Documentation Locations
 
-| Topic | Location |
-|-------|----------|
-| Fork workflow | `docs/alesi/FORK_WORKFLOW.md` |
-| Upstream contribution | `docs/alesi/UPSTREAM_CONTRIB.md` |
-| Persona definition | `~/.alesibot/workspace/IDENTITY.md` |
-| saTway principles | `~/.alesibot/workspace/SOUL.md` |
+| Topic                 | Location                            |
+| --------------------- | ----------------------------------- |
+| Fork workflow         | `docs/alesi/FORK_WORKFLOW.md`       |
+| Upstream contribution | `docs/alesi/UPSTREAM_CONTRIB.md`    |
+| Persona definition    | `~/.alesibot/workspace/IDENTITY.md` |
+| saTway principles     | `~/.alesibot/workspace/SOUL.md`     |
 
 ---
 

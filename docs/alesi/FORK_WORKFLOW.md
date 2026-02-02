@@ -19,12 +19,12 @@ origin/main-jane ─────────────────────
               feature/*   fix/*
 ```
 
-| Branch | Purpose | Protected |
-|--------|---------|-----------|
-| `main` | Upstream sync only | Yes |
-| `main-jane` | Active development | No |
-| `feature/*` | New features | No |
-| `fix/*` | Bug fixes | No |
+| Branch      | Purpose            | Protected |
+| ----------- | ------------------ | --------- |
+| `main`      | Upstream sync only | Yes       |
+| `main-jane` | Active development | No        |
+| `feature/*` | New features       | No        |
+| `fix/*`     | Bug fixes          | No        |
 
 ---
 
@@ -82,12 +82,12 @@ git push origin main-jane
 
 ### Sync Frequency
 
-| Urgency | Frequency |
-|---------|-----------|
-| Security fixes | Immediate |
-| Bug fixes | Weekly |
-| Features | Bi-weekly |
-| Refactoring | Monthly review |
+| Urgency        | Frequency      |
+| -------------- | -------------- |
+| Security fixes | Immediate      |
+| Bug fixes      | Weekly         |
+| Features       | Bi-weekly      |
+| Refactoring    | Monthly review |
 
 ---
 
@@ -105,22 +105,22 @@ Follow OpenClaw conventions (Conventional Commits):
 
 ### Types
 
-| Type | Description |
-|------|-------------|
-| `feat` | New feature |
-| `fix` | Bug fix |
-| `docs` | Documentation |
-| `style` | Formatting |
+| Type       | Description        |
+| ---------- | ------------------ |
+| `feat`     | New feature        |
+| `fix`      | Bug fix            |
+| `docs`     | Documentation      |
+| `style`    | Formatting         |
 | `refactor` | Code restructuring |
-| `test` | Tests |
-| `chore` | Build/tools |
+| `test`     | Tests              |
+| `chore`    | Build/tools        |
 
 ### Alesi-Specific Scopes
 
-| Scope | Use |
-|-------|-----|
-| `alesi` | Persona-related changes |
-| `satway` | saTway framework |
+| Scope       | Use                     |
+| ----------- | ----------------------- |
+| `alesi`     | Persona-related changes |
+| `satway`    | saTway framework        |
 | `workspace` | Workspace configuration |
 
 ### Examples
@@ -138,18 +138,18 @@ chore: sync with upstream v2026.1.30
 
 ### Before Merge
 
-| Check | Command | Required |
-|-------|---------|----------|
-| Build | `pnpm build` | ✅ |
-| Tests | `pnpm test` | ✅ |
-| Lint | `pnpm lint` | ✅ |
-| Format | `pnpm format` | ✅ |
+| Check  | Command       | Required |
+| ------ | ------------- | -------- |
+| Build  | `pnpm build`  | ✅       |
+| Tests  | `pnpm test`   | ✅       |
+| Lint   | `pnpm lint`   | ✅       |
+| Format | `pnpm format` | ✅       |
 
 ### Coverage Targets
 
-| Type | Target |
-|------|--------|
-| Unit | ≥70% |
+| Type        | Target      |
+| ----------- | ----------- |
+| Unit        | ≥70%        |
 | Integration | Best effort |
 
 ---
@@ -164,11 +164,11 @@ chore: sync with upstream v2026.1.30
 
 ### Common Conflicts
 
-| File | Resolution |
-|------|------------|
+| File           | Resolution                            |
+| -------------- | ------------------------------------- |
 | `package.json` | Keep upstream version, review scripts |
-| `README.md` | Merge, preserve Alesi section |
-| `docs/*` | Alesi docs in separate directory |
+| `README.md`    | Merge, preserve Alesi section         |
+| `docs/*`       | Alesi docs in separate directory      |
 
 ---
 
