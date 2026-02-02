@@ -103,3 +103,11 @@ repos:
         language: system
         pass_filenames: false
         types: [swift]
+
+      # commitlint (commit message validation)
+      - id: commitlint
+        name: commitlint
+        stages: [commit-msg]
+        entry: pnpm commitlint --edit
+        language: system
+        pass_filenames: false
