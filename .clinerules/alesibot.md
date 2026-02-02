@@ -163,4 +163,29 @@ git remote -v
 
 ---
 
+## API & Library Verification (MANDATORY)
+
+**Policy:** All new external API or library integrations in Alesi-specific code MUST be verified before implementation.
+
+### Verification Protocol
+
+1. **Context7 Check**: Use `resolve-library-id` → `get-library-docs` to verify API signatures
+2. **Minimal Test**: Write at least one unit test calling the API/function to confirm behavior
+3. **Document**: Note the verified version in code comments or commit message
+
+### Applies To
+
+- New npm packages added to dependencies
+- New REST/GraphQL API endpoints consumed
+- New SDK integrations (persona providers, tool APIs)
+
+### Exceptions
+
+- Packages already used in upstream OpenClaw (inherited verification)
+- Standard Node.js built-in APIs
+
+**Rationale:** Prevents hallucinated API usage and ensures Alesi extensions maintain high accuracy (≥97% target).
+
+---
+
 **satware AG** - Alesi Family AGI Framework

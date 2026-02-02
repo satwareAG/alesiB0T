@@ -1,3 +1,12 @@
+> **Fork Notice:** This is **satwareAG/alesiB0T**, a fork of [OpenClaw](https://github.com/openclaw/openclaw).
+> Fork-specific rules, scopes, and workflows are defined in:
+> - `.clinerules/alesibot.md` - Project rules and conventions
+> - `docs/alesi/` - Fork documentation (workflow, security, testing)
+>
+> The content below is inherited from upstream and remains authoritative for shared functionality.
+
+---
+
 # Repository Guidelines
 
 - Repo: https://github.com/openclaw/openclaw
