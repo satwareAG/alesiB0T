@@ -1,10 +1,19 @@
 {
+  "private": true,
   "name": "openclaw",
   "version": "2026.2.1",
   "description": "WhatsApp gateway CLI (Baileys web) with Pi RPC agent",
   "keywords": [],
   "license": "MIT",
-  "author": "",
+  "author": "satware AG <info@satware.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/satwareAG/alesiB0T.git"
+  },
+  "homepage": "https://github.com/satwareAG/alesiB0T",
+  "bugs": {
+    "url": "https://github.com/satwareAG/alesiB0T/issues"
+  },
   "bin": {
     "openclaw": "openclaw.mjs"
   },
