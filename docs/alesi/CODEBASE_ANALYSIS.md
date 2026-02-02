@@ -214,17 +214,20 @@ openclaw config set agents.list.jane.workspace ~/.alesibot/workspace
 | `~/.alesibot/workspace/IDENTITY.md` | ✅ Complete | Jane Alesi v13 persona |
 | `~/.alesibot/workspace/SOUL.md` | ✅ Complete | saTway principles |
 | `~/.alesibot/workspace/USER.md` | ✅ Complete | Michael Wegener profile |
-| `~/.alesibot/workspace/TOOLS.md` | ❌ Missing | Custom tool guidance |
-| `~/.alesibot/workspace/AGENTS.md` | ❌ Missing | Behavior guidelines |
+| `~/.alesibot/workspace/TOOLS.md` | ✅ Complete | Tool discipline guidelines |
+| `~/.alesibot/workspace/AGENTS.md` | ✅ Complete | Agent behavior guidelines |
+| `~/.alesibot/config.json` | ✅ Complete | OpenClaw configuration |
 
 ---
 
 ## 8. Next Steps
 
-1. **Create missing workspace files** (TOOLS.md, AGENTS.md)
-2. **Create alesiB0T config** at `~/.alesibot/config.json`
+1. ~~**Create missing workspace files** (TOOLS.md, AGENTS.md)~~ ✅ Done
+2. ~~**Create alesiB0T config** at `~/.alesibot/config.json`~~ ✅ Done
 3. **Test integration** with OpenClaw CLI
 4. **Consider upstream contribution** of generic improvements
+5. **Add avatar** for Jane Alesi (optional)
+6. **Create HEARTBEAT.md** for periodic check-in prompts (optional)
 
 ---
 
