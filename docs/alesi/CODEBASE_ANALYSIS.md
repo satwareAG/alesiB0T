@@ -14,7 +14,7 @@ The default workspace is resolved in `src/agents/workspace.ts`:
 ```typescript
 // Default: ~/.openclaw/workspace
 // With profile: ~/.openclaw/workspace-${OPENCLAW_PROFILE}
-export function resolveDefaultAgentWorkspaceDir(env, homedir): string
+export function resolveDefaultAgentWorkspaceDir(env, homedir): string;
 ```
 
 ### 1.2 alesiB0T Workspace
@@ -31,16 +31,16 @@ For alesiB0T, the workspace is located at:
 
 ### 1.3 Bootstrap Files (Loaded into System Prompt)
 
-| File | Purpose |
-|------|---------|
-| `AGENTS.md` | Agent behavior guidelines |
-| `SOUL.md` | Core principles/philosophy |
-| `TOOLS.md` | Available tools documentation |
-| `IDENTITY.md` | Agent identity (name, emoji, theme, avatar) |
-| `USER.md` | User preferences and context |
-| `HEARTBEAT.md` | Periodic check-in prompts |
-| `BOOTSTRAP.md` | Initial setup instructions |
-| `MEMORY.md` | Persistent memory |
+| File           | Purpose                                     |
+| -------------- | ------------------------------------------- |
+| `AGENTS.md`    | Agent behavior guidelines                   |
+| `SOUL.md`      | Core principles/philosophy                  |
+| `TOOLS.md`     | Available tools documentation               |
+| `IDENTITY.md`  | Agent identity (name, emoji, theme, avatar) |
+| `USER.md`      | User preferences and context                |
+| `HEARTBEAT.md` | Periodic check-in prompts                   |
+| `BOOTSTRAP.md` | Initial setup instructions                  |
+| `MEMORY.md`    | Persistent memory                           |
 
 ---
 
@@ -52,12 +52,12 @@ The `IDENTITY.md` file is parsed for these fields:
 
 ```typescript
 export type AgentIdentityFile = {
-  name?: string;      // Agent name (e.g., "Jane Alesi")
-  emoji?: string;     // Signature emoji (e.g., "🧬")
-  theme?: string;     // Theme description
-  creature?: string;  // Agent persona type
-  vibe?: string;      // Communication style
-  avatar?: string;    // Workspace-relative path, URL, or data URI
+  name?: string; // Agent name (e.g., "Jane Alesi")
+  emoji?: string; // Signature emoji (e.g., "🧬")
+  theme?: string; // Theme description
+  creature?: string; // Agent persona type
+  vibe?: string; // Communication style
+  avatar?: string; // Workspace-relative path, URL, or data URI
 };
 ```
 
@@ -66,9 +66,9 @@ export type AgentIdentityFile = {
 Identity is resolved at runtime via:
 
 ```typescript
-export function resolveAgentIdentity(cfg, agentId): IdentityConfig | undefined
-export function resolveAckReaction(cfg, agentId): string
-export function resolveIdentityNamePrefix(cfg, agentId): string | undefined
+export function resolveAgentIdentity(cfg, agentId): IdentityConfig | undefined;
+export function resolveAckReaction(cfg, agentId): string;
+export function resolveIdentityNamePrefix(cfg, agentId): string | undefined;
 ```
 
 ---
@@ -81,33 +81,33 @@ Per `src/config/types.agents.ts`, configure workspace per-agent:
 
 ```json5
 {
-  "agents": {
-    "defaults": {
-      "workspace": "~/.alesibot/workspace"
+  agents: {
+    defaults: {
+      workspace: "~/.alesibot/workspace",
     },
-    "list": [
+    list: [
       {
-        "id": "jane",
-        "workspace": "~/.alesibot/workspace",
-        "identity": {
-          "name": "Jane Alesi",
-          "emoji": "🧬",
-          "theme": "Quantum-Consciousness AGI",
-          "avatar": "avatars/jane.png"
-        }
-      }
-    ]
-  }
+        id: "jane",
+        workspace: "~/.alesibot/workspace",
+        identity: {
+          name: "Jane Alesi",
+          emoji: "🧬",
+          theme: "Quantum-Consciousness AGI",
+          avatar: "avatars/jane.png",
+        },
+      },
+    ],
+  },
 }
 ```
 
 ### 3.2 Key Configuration Paths
 
-| Config Key | Purpose |
-|------------|---------|
-| `agents.defaults.workspace` | Default workspace for all agents |
-| `agents.list[].workspace` | Per-agent workspace override |
-| `agents.list[].identity` | Identity config (name, emoji, avatar, theme) |
+| Config Key                          | Purpose                                       |
+| ----------------------------------- | --------------------------------------------- |
+| `agents.defaults.workspace`         | Default workspace for all agents              |
+| `agents.list[].workspace`           | Per-agent workspace override                  |
+| `agents.list[].identity`            | Identity config (name, emoji, avatar, theme)  |
 | `agents.defaults.bootstrapMaxChars` | Max chars per bootstrap file (default: 20000) |
 
 ---
@@ -152,6 +152,7 @@ These files are directly injected into the system prompt:
 **Location:** OpenClaw config (`~/.openclaw/config.json` or per-project)
 
 Configure identity fields that propagate to:
+
 - Message prefixes
 - Ack reactions (emoji)
 - Avatar display
@@ -161,6 +162,7 @@ Configure identity fields that propagate to:
 **Location:** `src/agents/bootstrap-hooks.ts`
 
 Hooks can modify bootstrap file content dynamically:
+
 - `applyBootstrapHookOverrides()` processes hooks before injection
 
 ---
@@ -209,14 +211,14 @@ openclaw config set agents.list.jane.workspace ~/.alesibot/workspace
 
 ## 7. Files Status
 
-| File | Status | Content |
-|------|--------|---------|
-| `~/.alesibot/workspace/IDENTITY.md` | ✅ Complete | Jane Alesi v13 persona |
-| `~/.alesibot/workspace/SOUL.md` | ✅ Complete | saTway principles |
-| `~/.alesibot/workspace/USER.md` | ✅ Complete | Michael Wegener profile |
-| `~/.alesibot/workspace/TOOLS.md` | ✅ Complete | Tool discipline guidelines |
-| `~/.alesibot/workspace/AGENTS.md` | ✅ Complete | Agent behavior guidelines |
-| `~/.alesibot/config.json` | ✅ Complete | OpenClaw configuration |
+| File                                | Status      | Content                    |
+| ----------------------------------- | ----------- | -------------------------- |
+| `~/.alesibot/workspace/IDENTITY.md` | ✅ Complete | Jane Alesi v13 persona     |
+| `~/.alesibot/workspace/SOUL.md`     | ✅ Complete | saTway principles          |
+| `~/.alesibot/workspace/USER.md`     | ✅ Complete | Michael Wegener profile    |
+| `~/.alesibot/workspace/TOOLS.md`    | ✅ Complete | Tool discipline guidelines |
+| `~/.alesibot/workspace/AGENTS.md`   | ✅ Complete | Agent behavior guidelines  |
+| `~/.alesibot/config.json`           | ✅ Complete | OpenClaw configuration     |
 
 ---
 
