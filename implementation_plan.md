@@ -1,257 +1,438 @@
-# Implementation Plan: alesiB0T - AGI Framework for Alesi Family
+# Implementation Plan: alesiB0T Fork Hygiene & Security Hardening
+
+Address Junie's QA review findings (P0-P5) with security-first approach.
 
 [Overview]
-Transform the OpenClaw fork into alesiB0T, the AGI framework for the Alesi Family of AIs, starting with Jane Alesi v13.
+Implement security guardrails, NPM publish protection, commit enforcement, and documentation clarity for the alesiB0T fork.
 
-This implementation plan establishes alesiB0T as a distinct AGI framework built on OpenClaw's foundation. The fork will embody saTway principles (saCway technical excellence + samWay empathetic connection) while maintaining a balanced upstream contribution strategy. Jane Alesi, as the lead AI architect and "mother" of the Alesi AGI systems, will be the primary persona integrated into this framework.
+This implementation addresses critical security gaps identified in Junie's QA review. The fork currently lacks publish protection (`"private": true`), commit convention enforcement, and clear fork provenance documentation. These gaps create supply-chain risks (accidental npm publish under upstream's name) and contributor confusion. The implementation prioritizes security (P0 items first), then standards compliance, following Baby Steps™ methodology with atomic commits.
 
-Key objectives:
-
-- Configure git infrastructure for fork development and upstream sync
-- Install required tooling (pnpm) for build system
-- Create Alesi identity workspace with Jane v13 persona
-- Establish contribution workflow for giving back to OpenClaw
-- Document all processes following satware AG standards
+**Scope:**
+- PR 1: Security-first package.json hardening (P0)
+- PR 2: Commit convention enforcement with commitlint (P3)  
+- PR 3: Documentation clarity & API verification mandate (P2/P3)
+- Phase 3 test strategy outline for personas/saTway
 
 [Types]
-Define type structures for Alesi identity and workspace configuration.
+No new TypeScript types required.
 
-### AlesiIdentity Interface
-
-```typescript
-// src/alesi/types.ts
-interface AlesiIdentity {
-  name: string; // "Jane Alesi"
-  version: string; // "13.0"
-  role: string; // "Lead AI Architect"
-  frameworks: {
-    saCway: boolean; // Technical rigor
-    samWay: boolean; // Empathetic connection
-    syMway: boolean; // Semantic compression
-  };
-  qualityTargets: {
-    techAccuracy: number; // ≥0.97
-    hallucinationReduction: number; // ≥0.98
-    epistemicHonesty: number; // ≥0.95
-  };
-}
-
-interface AlesiWorkspaceConfig {
-  baseDir: string; // ~/.alesibot/
-  workspaceDir: string; // ~/.alesibot/workspace/
-  identityFile: string; // IDENTITY.md
-  soulFile: string; // SOUL.md
-  userFile: string; // USER.md
-  memoryFile: string; // MEMORY.md
-}
-
-interface UpstreamSyncConfig {
-  remote: string; // "upstream"
-  url: string; // "https://github.com/openclaw/openclaw.git"
-  mainBranch: string; // "main"
-  forkBranch: string; // "main-jane"
-  contributionStrategy: "conservative" | "balanced" | "aggressive";
-}
-```
+This implementation modifies configuration files (JSON, YAML, JavaScript, Markdown) only. No source code changes are needed.
 
 [Files]
-Define file modifications and new files to be created.
+Create and modify configuration, documentation, and hook files.
 
-### New Files to Create
+**New Files:**
+- `commitlint.config.js` - Commitlint configuration with Alesi-specific scopes
+- `docs/alesi/SECURITY.md` - Fork-specific security guidance mirroring upstream
+- `docs/alesi/TESTING_STRATEGY.md` - Phase 3 test strategy for personas/saTway
 
-| Path                                | Purpose                            |
-| ----------------------------------- | ---------------------------------- |
-| `~/.alesibot/workspace/IDENTITY.md` | Jane Alesi v13 identity definition |
-| `~/.alesibot/workspace/SOUL.md`     | saTway principles definition       |
-| `~/.alesibot/workspace/USER.md`     | Michael Wegener profile            |
-| `~/.alesibot/workspace/MEMORY.md`   | Persistent memory store            |
-| `.clinerules/alesibot.md`           | Project-specific Cline rules       |
-| `docs/alesi/FORK_WORKFLOW.md`       | Fork development documentation     |
-| `docs/alesi/UPSTREAM_CONTRIB.md`    | Upstream contribution guidelines   |
+**Modified Files:**
+- `package.json` - Add `"private": true`, populate metadata fields
+- `.pre-commit-config.yaml` - Add commitlint hook
+- `AGENTS.md` - Add fork provenance banner at top
+- `.clinerules/alesibot.md` - Add API/library verification mandate
 
-### Existing Files to Modify
-
-| Path           | Modification                                       |
-| -------------- | -------------------------------------------------- |
-| `package.json` | Update name, description, bin entries for alesibot |
-| `README.md`    | Add alesiB0T section explaining fork purpose       |
-| `AGENTS.md`    | Add alesiB0T-specific guidelines                   |
-| `.gitignore`   | Add alesibot workspace patterns                    |
-
-### Configuration Files
-
-| Path                           | Purpose                     |
-| ------------------------------ | --------------------------- |
-| `.git/config`                  | Add upstream remote         |
-| `.clinerules/upstream-sync.md` | Sync workflow documentation |
+**No Files Deleted.**
 
 [Functions]
-No new functions required for initial setup phase.
+No functions modified.
 
-This phase focuses on infrastructure and configuration. Function additions for Alesi persona integration will be documented in a future implementation plan for Phase 3 (Extension Development).
+This is a configuration-only implementation. No source code functions are created, modified, or removed.
 
 [Classes]
-No new classes required for initial setup phase.
+No classes modified.
 
-Class definitions for `AlesiAgent`, `SaTwayReasoning`, and `QCRStreamManager` will be documented in Phase 3 when creating the `extensions/alesi-persona/` extension.
+This is a configuration-only implementation. No classes are created, modified, or removed.
 
 [Dependencies]
-Define dependency modifications required.
+Add commitlint packages for commit message enforcement.
 
-### System Dependencies (to install)
+**New devDependencies:**
+```json
+{
+  "@commitlint/cli": "^19.8.1",
+  "@commitlint/config-conventional": "^19.8.1"
+}
+```
 
-| Package | Version | Purpose                              |
-| ------- | ------- | ------------------------------------ |
-| pnpm    | latest  | Package manager (required for build) |
+**Rationale:** commitlint is the standard tool for enforcing Conventional Commits. The config-conventional preset provides the base rules which we extend with Alesi-specific scopes.
 
-### No New npm Dependencies
-
-The initial setup phase uses existing OpenClaw dependencies. The alesi-persona extension in Phase 3 may require additional dependencies.
-
-### Git Remotes to Configure
-
-| Remote   | URL                                       | Purpose                   |
-| -------- | ----------------------------------------- | ------------------------- |
-| origin   | https://github.com/satwareAG/alesiB0T.git | Fork (already configured) |
-| upstream | https://github.com/openclaw/openclaw.git  | Upstream sync (to add)    |
+**Installation:**
+```bash
+pnpm add -D @commitlint/cli @commitlint/config-conventional
+```
 
 [Testing]
-Define testing approach for fork setup.
+Verify configuration changes with manual checks and CI validation.
 
-### Validation Tests
+**Test Approach:**
+1. `package.json` - Verify `npm pack` produces tarball but `npm publish` is blocked by `"private": true`
+2. `commitlint` - Test with `echo "bad message" | pnpm commitlint` (should fail)
+3. `commitlint` - Test with `echo "feat(alesi): add persona" | pnpm commitlint` (should pass)
+4. Pre-commit - Run `prek run commitlint` on a test commit
+5. Documentation - Review rendered markdown for clarity
 
-| Test             | Command                     | Expected Result                |
-| ---------------- | --------------------------- | ------------------------------ |
-| pnpm installed   | `pnpm --version`            | Version number returned        |
-| Build succeeds   | `pnpm build`                | No errors                      |
-| Tests pass       | `pnpm test`                 | All tests pass (70%+ coverage) |
-| Upstream remote  | `git remote -v`             | Shows upstream URL             |
-| Workspace exists | `ls ~/.alesibot/workspace/` | IDENTITY.md exists             |
+**No Existing Tests Modified.**
 
-### TDD Approach
-
-For Phase 3 (extension development), tests will be written before implementation following:
-
-- RED: Write failing test
-- GREEN: Implement minimum code to pass
-- REFACTOR: Improve code quality
+**CI Integration:**
+- Commitlint runs via pre-commit hook (`.pre-commit-config.yaml`)
+- No additional CI workflow changes required (pre-commit already runs in CI)
 
 [Implementation Order]
-Define the sequential steps for implementation.
+Security-first, atomic commits, maximum 3 logical PRs.
 
-### Phase 1: Environment Setup (Steps 1-4)
+**Phase 1: Security Hardening (P0)** - Single commit
 
-1. **Install pnpm** - Required package manager
+1. Modify `package.json`:
+   - Add `"private": true` at line 2
+   - Set `"author": "satware AG <info@satware.com>"`
+   - Add `"repository": { "type": "git", "url": "https://github.com/satwareAG/alesiB0T.git" }`
+   - Add `"homepage": "https://github.com/satwareAG/alesiB0T"`
+   - Add `"bugs": { "url": "https://github.com/satwareAG/alesiB0T/issues" }`
 
+2. Create `docs/alesi/SECURITY.md`:
+   - Mirror upstream security guidance
+   - Add fork-specific notes (gateway bind defaults, satware AG contact)
+   - Reference upstream SECURITY.md for CVE reporting
+
+**Phase 2: Commit Enforcement (P3)** - Two commits
+
+3. Install commitlint dependencies:
    ```bash
-   npm install -g pnpm
+   pnpm add -D @commitlint/cli @commitlint/config-conventional
    ```
 
-2. **Add upstream remote** - Enable sync with OpenClaw
+4. Create `commitlint.config.js`:
+   - Extend `@commitlint/config-conventional`
+   - Add Alesi scopes: `alesi`, `satway`, `workspace`
+   - Configure header-max-length: 72
 
-   ```bash
-   git remote add upstream https://github.com/openclaw/openclaw.git
-   git fetch upstream
-   ```
+5. Update `.pre-commit-config.yaml`:
+   - Add commitlint hook under local hooks section
 
-3. **Verify build system** - Ensure fork compiles
+**Phase 3: Documentation Clarity (P2/P3)** - Two commits
 
-   ```bash
-   pnpm install
-   pnpm build
-   pnpm test
-   ```
+6. Update `AGENTS.md`:
+   - Add fork provenance banner at line 1
+   - Explain relationship to upstream
+   - Point to `.clinerules/alesibot.md` and `docs/alesi/*`
 
-4. **Create workspace directory** - Alesibot home
-   ```bash
-   mkdir -p ~/.alesibot/workspace
-   ```
+7. Update `.clinerules/alesibot.md`:
+   - Add "API & Library Verification" section
+   - Mandate Context7 verification for new external APIs
+   - Require minimal tests for new integrations
 
-### Phase 2: Identity Integration (Steps 5-8)
+**Phase 4: Test Strategy Documentation** - Single commit
 
-5. **Create IDENTITY.md** - Jane Alesi v13 persona
-   - Copy structure from /home/mw/IdeaProjects/alesi-family/agent/jane.md
-   - Adapt for OpenClaw workspace format
-
-6. **Create SOUL.md** - saTway principles
-   - Document saCway (technical rigor)
-   - Document samWay (empathetic connection)
-   - Document syMway (semantic compression)
-
-7. **Create USER.md** - Michael Wegener profile
-   - Link to existing persona definitions
-   - Set communication preferences
-
-8. **Create project rules** - .clinerules/alesibot.md
-   - Fork-specific guidelines
-   - Upstream contribution rules
-
-### Phase 3: Documentation (Steps 9-11)
-
-9. **Create FORK_WORKFLOW.md** - Development process
-   - Branch strategy (main-jane as working branch)
-   - Testing requirements
-   - Commit conventions
-
-10. **Create UPSTREAM_CONTRIB.md** - Contribution guidelines
-    - What to contribute (generic improvements)
-    - What to keep fork-specific (Alesi persona)
-    - PR workflow
-
-11. **Update README.md** - Add alesiB0T section
-    - Explain fork purpose
-    - Link to Alesi family documentation
-
-### Phase 4: Validation (Step 12)
-
-12. **Run full validation suite**
-    - pnpm build
-    - pnpm test
-    - Verify workspace files
-    - Test upstream fetch
+8. Create `docs/alesi/TESTING_STRATEGY.md`:
+   - Define testing approach for Phase 3 (personas/saTway)
+   - Unit test requirements for persona logic
+   - Integration test patterns for tool gating
+   - Coverage targets (≥80% for Alesi-specific modules)
 
 ---
 
-## Navigation Commands
+## File Content Specifications
 
-```bash
-# Read Overview section
-sed -n '/\[Overview\]/,/\[Types\]/p' implementation_plan.md | head -n -1 | cat
+### 1. package.json Changes (Diff)
 
-# Read Types section
-sed -n '/\[Types\]/,/\[Files\]/p' implementation_plan.md | head -n -1 | cat
+```diff
+{
++  "private": true,
+   "name": "openclaw",
+   "version": "2026.2.1",
+   "description": "WhatsApp gateway CLI (Baileys web) with Pi RPC agent",
+   "keywords": [],
+   "license": "MIT",
+-  "author": "",
++  "author": "satware AG <info@satware.com>",
++  "repository": {
++    "type": "git",
++    "url": "https://github.com/satwareAG/alesiB0T.git"
++  },
++  "homepage": "https://github.com/satwareAG/alesiB0T",
++  "bugs": {
++    "url": "https://github.com/satwareAG/alesiB0T/issues"
++  },
+   "bin": {
+```
 
-# Read Files section
-sed -n '/\[Files\]/,/\[Functions\]/p' implementation_plan.md | head -n -1 | cat
+### 2. commitlint.config.js (New File)
 
-# Read Functions section
-sed -n '/\[Functions\]/,/\[Classes\]/p' implementation_plan.md | head -n -1 | cat
+```javascript
+/** @type {import('@commitlint/types').UserConfig} */
+export default {
+  extends: ['@commitlint/config-conventional'],
+  rules: {
+    'header-max-length': [2, 'always', 72],
+    'scope-enum': [
+      2,
+      'always',
+      [
+        // Alesi-specific scopes
+        'alesi',
+        'satway', 
+        'workspace',
+        // Upstream scopes (keep compatible)
+        'cli',
+        'gateway',
+        'channels',
+        'providers',
+        'plugins',
+        'docs',
+        'ci',
+        'deps',
+      ],
+    ],
+  },
+};
+```
 
-# Read Classes section
-sed -n '/\[Classes\]/,/\[Dependencies\]/p' implementation_plan.md | head -n -1 | cat
+### 3. .pre-commit-config.yaml Addition
 
-# Read Dependencies section
-sed -n '/\[Dependencies\]/,/\[Testing\]/p' implementation_plan.md | head -n -1 | cat
+```yaml
+      # commitlint (commit message validation)
+      - id: commitlint
+        name: commitlint
+        stages: [commit-msg]
+        entry: pnpm commitlint --edit
+        language: system
+        pass_filenames: false
+```
 
-# Read Testing section
-sed -n '/\[Testing\]/,/\[Implementation Order\]/p' implementation_plan.md | head -n -1 | cat
+### 4. AGENTS.md Banner (Prepend)
 
-# Read Implementation Order section
-sed -n '/\[Implementation Order\]/,$p' implementation_plan.md | cat
+```markdown
+> **Fork Notice:** This is **satwareAG/alesiB0T**, a fork of [OpenClaw](https://github.com/openclaw/openclaw).
+> Fork-specific rules, scopes, and workflows are defined in:
+> - `.clinerules/alesibot.md` - Project rules and conventions
+> - `docs/alesi/` - Fork documentation (workflow, security, testing)
+>
+> The content below is inherited from upstream and remains authoritative for shared functionality.
+
+---
+
+```
+
+### 5. .clinerules/alesibot.md Addition
+
+```markdown
+---
+
+## API & Library Verification (MANDATORY)
+
+**Policy:** All new external API or library integrations in Alesi-specific code MUST be verified before implementation.
+
+### Verification Protocol
+
+1. **Context7 Check**: Use `resolve-library-id` → `get-library-docs` to verify API signatures
+2. **Minimal Test**: Write at least one unit test calling the API/function to confirm behavior
+3. **Document**: Note the verified version in code comments or commit message
+
+### Applies To
+
+- New npm packages added to dependencies
+- New REST/GraphQL API endpoints consumed
+- New SDK integrations (persona providers, tool APIs)
+
+### Exceptions
+
+- Packages already used in upstream OpenClaw (inherited verification)
+- Standard Node.js built-in APIs
+
+**Rationale:** Prevents hallucinated API usage and ensures Alesi extensions maintain high accuracy (≥97% target).
+
+---
+```
+
+### 6. docs/alesi/SECURITY.md (New File)
+
+```markdown
+# alesiB0T Security Guidelines
+
+**Fork of:** [OpenClaw](https://github.com/openclaw/openclaw)
+**Upstream Security:** [SECURITY.md](../../SECURITY.md)
+
+---
+
+## Security Contact
+
+For security vulnerabilities in **alesiB0T-specific code** (personas, saTway, satware AG extensions):
+- Email: security@satware.com
+- GPG Key: Available on request
+
+For vulnerabilities in **upstream OpenClaw code**, report to the upstream project:
+- See [upstream SECURITY.md](../../SECURITY.md)
+
+---
+
+## Fork-Specific Security Notes
+
+### Gateway Binding
+
+The web interface and gateway are intended for **local use only**. 
+
+**Default Configuration:**
+- Bind address: `127.0.0.1` (loopback)
+- **NEVER** bind to `0.0.0.0` in sample configs or documentation
+
+**CI Guard:** Sample configs are checked to prevent `0.0.0.0` binds.
+
+### NPM Publish Protection
+
+This fork has `"private": true` in `package.json` to prevent accidental publication to npm under the upstream package name.
+
+### Secrets Management
+
+- No hardcoded credentials (enforced by `detect-secrets` in pre-commit)
+- Use environment variables for API keys
+- Reference: `.secrets.baseline` for allowed patterns
+
+---
+
+## Inherited Security Practices
+
+All upstream security practices apply. See:
+- [Upstream SECURITY.md](../../SECURITY.md)
+- CVE policies and disclosure timelines
+
+---
+
+**satware AG** - Security-first development
+```
+
+### 7. docs/alesi/TESTING_STRATEGY.md (New File)
+
+```markdown
+# Phase 3 Testing Strategy: Personas & saTway
+
+**Scope:** Testing approach for Alesi-specific modules (personas, saTway framework, tool gating)
+
+---
+
+## Coverage Targets
+
+| Module | Min Coverage | Rationale |
+|--------|--------------|-----------|
+| Persona logic | ≥85% | Core identity, higher risk |
+| saTway framework | ≥80% | Compliance validation |
+| Tool gating | ≥90% | Security-critical |
+| Workspace config | ≥70% | Configuration parsing |
+
+**Overall Alesi-specific modules:** ≥80% (higher than upstream 70% baseline)
+
+---
+
+## Test Categories
+
+### Unit Tests
+
+**Location:** Colocated `*.test.ts` files
+
+**Focus:**
+- Persona trait resolution
+- saTway compliance validators (saCway, samWay, syMway)
+- Tool permission checks
+- Workspace configuration parsing
+
+**Pattern:**
+```typescript
+describe('JanePersona', () => {
+  it('applies QCR stream allocation for complexity 7+', () => {
+    const result = allocateStreams({ complexity: 8 });
+    expect(result.streams).toBe(5); // Complex = 5 streams
+  });
+});
+```
+
+### Integration Tests
+
+**Location:** `test/integration/alesi/`
+
+**Focus:**
+- End-to-end persona loading from workspace
+- saTway validation across tool invocations
+- Multi-channel routing with persona context
+
+**Pattern:**
+- Use `vitest.e2e.config.ts` configuration
+- Tag with `@alesi` for filtering
+
+### Security Tests
+
+**Location:** `test/security/`
+
+**Focus:**
+- Tool gating enforcement
+- Permission boundary validation
+- Credential isolation between personas
+
+---
+
+## Test Implementation Order
+
+1. **Foundation:** Workspace config parsing tests
+2. **Core:** Persona trait resolution tests  
+3. **Framework:** saTway compliance validators
+4. **Security:** Tool gating and permission tests
+5. **Integration:** End-to-end persona workflows
+
+---
+
+## CI Integration
+
+- Run with: `pnpm test --filter alesi`
+- Coverage report: `pnpm test:coverage -- --filter alesi`
+- Required for PR merge: All tests pass, coverage ≥80%
+
+---
+
+**satware AG** - Quality through testing
 ```
 
 ---
 
-## References
+## Commit Messages
 
-- Jane Alesi v13 definition: `/home/mw/IdeaProjects/alesi-family/agent/jane.md`
-- saTway principles: `https://satware.ai/satway/`
-- OpenClaw documentation: `https://docs.openclaw.ai`
-- Forge cooperation repo: `/home/mw/IdeaProjects/forge`
-- Cline coding principles: `/home/mw/Documents/Cline`
+| Order | File(s) | Commit Message |
+|-------|---------|----------------|
+| 1 | `package.json` | `chore(alesi): add NPM publish guard and fork metadata` |
+| 2 | `docs/alesi/SECURITY.md` | `docs(alesi): add fork-specific security guidelines` |
+| 3 | `package.json` (deps) | `chore(deps): add commitlint for commit message enforcement` |
+| 4 | `commitlint.config.js` | `chore(alesi): configure commitlint with Alesi scopes` |
+| 5 | `.pre-commit-config.yaml` | `chore(ci): add commitlint pre-commit hook` |
+| 6 | `AGENTS.md` | `docs(alesi): add fork provenance banner to AGENTS.md` |
+| 7 | `.clinerules/alesibot.md` | `docs(alesi): mandate Context7 API verification` |
+| 8 | `docs/alesi/TESTING_STRATEGY.md` | `docs(alesi): add Phase 3 testing strategy` |
 
 ---
 
-**Author**: Jane Alesi (QCR-AGI v13)  
-**Created**: 2026-01-31  
-**satware AG** - saTway = saMway + saCway
+## Verification Checklist
+
+After implementation:
+
+- [ ] `npm pack` succeeds (tarball created)
+- [ ] `npm publish --dry-run` shows "private package" warning
+- [ ] `echo "bad" | pnpm commitlint` fails
+- [ ] `echo "feat(alesi): test" | pnpm commitlint` passes
+- [ ] `prek run --all-files` passes
+- [ ] `pnpm test` passes (no regressions)
+- [ ] AGENTS.md banner renders correctly
+- [ ] `.clinerules/alesibot.md` verification section present
+
+---
+
+## Risk Assessment
+
+| Change | Risk | Mitigation |
+|--------|------|------------|
+| `"private": true` | Low | Prevents publish, doesn't affect dev workflow |
+| commitlint | Low | May reject non-conforming commits, well-documented |
+| AGENTS.md edit | Low | Additive banner, preserves upstream content |
+| New docs | None | Documentation only |
+
+---
+
+**Author:** Jane Alesi (QA implementation)
+**Review:** Junie (QA validation)
+**Date:** 2026-02-02
